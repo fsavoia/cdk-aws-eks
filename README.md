@@ -15,7 +15,7 @@ Simplifies common development tasks such as testing, cleaning build artifacts, i
 
 ### Architecture
 
-!Architecture
+![Architecture](assets/doc/architecture.png)
 
 ### Setup
 
