@@ -1,3 +1,5 @@
+[![Deploy CDK Application](https://github.com/fsavoia/cdk-aws-eks/actions/workflows/deploy.yml/badge.svg)](https://github.com/fsavoia/cdk-aws-eks/actions/workflows/deploy.yml)
+
 # Welcome to CDK-EKS Python project!
 
 ### Overview
@@ -16,6 +18,10 @@ Simplifies common development tasks such as testing, cleaning build artifacts, i
 ### Architecture
 
 ![Architecture](assets/doc/architecture.png)
+
+### CICD Pipeline
+
+This repository features a GitHub Actions workflow that automates the deployment of our AWS CDK application, encompassing steps such as repository checkout, environment setup, dependency installation, testing, and deployment. To activate the deployment step, uncomment the relevant section in the workflow file and ensure your AWS credentials and region are securely stored as secrets in your GitHub repository settings. For detailed guidance, refer to resources like [AWS CDK GitHub Actions](https://github.com/marketplace/actions/aws-cdk-github-actions)].
 
 ### Setup
 
