@@ -2,7 +2,7 @@
 
 # Define the default target
 test: 
-	@AWS_DEFAULT_REGION=us-east-1 pytest -vv
+	@pytest -vv
 
 # Clean up pytest cache and temporary files
 clean:
