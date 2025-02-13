@@ -93,7 +93,7 @@ $ make destroy
 
 The project uses `cdk.context.json` for configuration:
 
-**region**: AWS region for deployment (default: us-east-1).
-**project**: Project name identifier.
-**vpc_cidr**: CIDR block for the VPC.
-**dev, staging, prod**: Environment specific configurations.
+* **region**: AWS region for deployment (default: us-east-1).
+* **project**: Project name identifier.
+* **vpc_cidr**: CIDR block for the VPC.
+* **dev, staging, prod**: Environment specific configurations.
