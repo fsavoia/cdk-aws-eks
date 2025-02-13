@@ -38,11 +38,6 @@ class CustomResourceStack(Stack):
             self,
             "MyCustomResource",
             service_token=provider.service_token,
-            # I decided to make it dynamic, so in every change we will
-            # trigger the lambda
-            properties={
-                "envparametername": ssm_parameter_name,
-            },
         )
 
         self.helm_values = my_custom_resource.get_att(
