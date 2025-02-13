@@ -1,0 +1,14 @@
+{
+  "region": "us-east-1",
+  "project": "CDK_EKS",
+  "vpc_cidr": "10.87.0.0/16",
+  "dev": {
+    "environment": "development"
+  },
+  "staging": {
+    "environment": "staging"
+  },
+  "prod": {
+    "environment": "production"
+  }
+}

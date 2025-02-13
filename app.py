@@ -1,28 +1,33 @@
 #!/usr/bin/env python3
 import os
 
-import aws_cdk as cdk
+from aws_cdk import App, Environment, Tags
 
-from eks_cdk.eks_cdk_stack import EksCdkStack
+from eks_cdk.cr_lambda import CustomResourceStack
+from eks_cdk.eks import EksClusterStack
+from eks_cdk.helpers import get_current_environment
+from eks_cdk.ssm import SsmStack
 
+app = App()
 
-app = cdk.App()
-EksCdkStack(app, "EksCdkStack",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
+default_region = app.node.try_get_context("region")
+region = os.environ.get("CDK_DEFAULT_REGION") or default_region
+environment = get_current_environment(scope=app)
+project = app.node.try_get_context("project")
 
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
+env = Environment(
+    account=os.environ.get("CDK_DEFAULT_ACCOUNT"),
+    region=region,
+)
 
-    #env=cdk.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
+Tags.of(app).add("Environment", environment)
+Tags.of(app).add("Project", project)
 
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
+ssm_stack = SsmStack(app, "SsmStack")
+custom_resource_stack = CustomResourceStack(app, "CustomResourceStack")
+eks_cluster_stack = EksClusterStack(app, "EksClusterStack")
 
-    #env=cdk.Environment(account='123456789012', region='us-east-1'),
-
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
-    )
+custom_resource_stack.add_dependency(ssm_stack)
+eks_cluster_stack.add_dependency(custom_resource_stack)
 
 app.synth()
