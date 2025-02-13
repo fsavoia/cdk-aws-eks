@@ -1,5 +1,0 @@
-- adicionar imagem da arquitetura
-- adicionar informacao da pipeline, explicar os testes e o stage de deploy comentado
-- adicionar pre-req
-- ensinar fazer o setup que exijo
-- ensinar a rodar
